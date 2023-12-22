@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --after_hover: hsl(230, 75%, 56%);
+  --text_color: hsl(230, 75%, 15%);
+  --placeholder: hsl(230, 12%, 40%);
+  --body-color: hsl(230, 100%, 98%);
+  --input_bg: hsl(230, 100%, 97%);
+  --border-color: hsl(230, 25%, 80%);
+}
+
+.ac {
+  position: relative;
+  display: inline-block;
+  color: #333;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+.ac::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background-color: #333;
+  transition: width 0.4s ease-in-out;
+}
+
+.ac:hover::after {
+  width: 100%;
+  transition: width 0.4s ease-in-out;
+}
