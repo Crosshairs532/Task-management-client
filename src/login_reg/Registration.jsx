@@ -15,8 +15,9 @@ import Swal from 'sweetalert2'
 import { useContext } from 'react';
 import { AuthContext } from '../authProvider/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
-// const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-// const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+import axios from 'axios'
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -29,15 +30,13 @@ function Copyright(props) {
 }
 const defaultTheme = createTheme();
 const Registration = () => {
-    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { CreateUser } = useContext(AuthContext);
+    const { CreateUser, updateUserProfile, logOut } = useContext(AuthContext);
     const goTo = useNavigate();
-    // const axiosPublic = useAxiosPublic();
     const onSubmit = async (data) => {
         const imageFile = { image: data.image[0] }
         console.log(imageFile);
-        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+        const res = await axios.post(image_hosting_api, imageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
@@ -45,19 +44,18 @@ const Registration = () => {
         console.log(res.data.data, "hi");
         const photo = res.data?.data?.display_url;
         if (res.data?.data?.display_url) {
-            const userInfo = { name: data?.name, email: data?.email, image: res.data?.data?.display_url, role: 'user', badge: 'bronze', all_badge: ['bronze'] }
+            const userInfo = {}
             console.log(userInfo);
-            signUp(data?.email, data?.password)
+            CreateUser(data?.email, data?.password)
                 .then(res => {
                     console.log(res.user);
                     updateUserProfile(data?.name, photo)
                         .then(async () => {
-                            const res = await axiosPublic.post('/user', userInfo)
                             if (res.data.insertedId) {
                                 Swal.fire({
                                     position: "top-end",
                                     icon: "success",
-                                    title: "Your work has been saved",
+                                    title: "Registered Successfully",
                                     showConfirmButton: false,
                                     timer: 1500
                                 });
@@ -149,11 +147,11 @@ const Registration = () => {
                         <div className="form-control w-full my-6">
                             <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
                         </div>
-                        <div>
+                        {/* <div>
                             <button onClick={handleGoogleSignIn} className=' btn bg-white shadow-xl'>
                                 <FcGoogle size={40} />
                             </button>
-                        </div>
+                        </div> */}
 
                         <Grid container>
                             <Grid item>
@@ -169,8 +167,6 @@ const Registration = () => {
                             Sign Up
                         </Button>
                     </Box>
-
-
                 </Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />
 
