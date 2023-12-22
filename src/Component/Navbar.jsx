@@ -1,7 +1,10 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { SiTask } from "react-icons/si";
+import { useContext } from "react";
+import { AuthContext } from "../authProvider/AuthProvider";
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext)
     const location = useLocation();
     const nav_items =
         <>
@@ -25,6 +28,11 @@ const Navbar = () => {
                     ? "ac"
                     : ""
             } to={'/ind'}>Industries</NavLink></li>
+            <li><NavLink className={({ isActive }) =>
+                isActive
+                    ? "ac"
+                    : ""
+            } to={'/dashboard'}>Dashboard</NavLink></li>
 
         </>
     return (
@@ -43,20 +51,42 @@ const Navbar = () => {
                     </div>
                     <a className="btn btn-ghost hidden lg:block md:block"><SiTask size={40} color="white" /></a>
                 </div>
-                <div className="navbar-center lg:flex">
+                <div className="navbar-center">
                     <a className="btn btn-ghost block lg:hidden md:hidden"><SiTask size={40} color="white" /></a>
-                    <ul className="menu  hidden font-Syne menu-horizontal px-1">
-                        {
-                            nav_items
-                        }
+                    <div className="hidden lg:flex">
+                        <ul className="menu font-Syne menu-horizontal px-1">
+                            {
+                                nav_items
+                            }
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
+                <div className={`navbar-end `}>
+                    <div className={` dropdown dropdown-end ${user ? 'block' : 'hidden'}`}>
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            </div>
+                        </div>
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                            <li>
+                                <a className="justify-between">
+                                    Profile
+                                    <span className="badge">New</span>
+                                </a>
+                            </li>
+                            <li><a>Settings</a></li>
+                            <li><a>Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div >
-        </div>
+
+            </div>
+
+
+        </div >
+
     );
 };
 

@@ -1,8 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Component/Navbar";
 import Banner from "../Component/Banner";
-
-
 const Layout = () => {
     const location = useLocation();
     return (
