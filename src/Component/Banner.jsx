@@ -11,7 +11,7 @@ const Banner = () => {
     return (
         <div className=" min-h-[calc(100vh-68px)] mt-14">
             <div>
-                <img src={img1} className=' absolute w-[100%] -left-[100px] lg:w-[40%] -bottom-[100px] opacity-30 lg:opacity-40 lg:-left-[200px] ' alt="" />
+                <img src={img1} className=' absolute z-10 w-[100%] -left-[100px] lg:w-[40%] top-[120px] -bottom-[100px] opacity-30 lg:opacity-40 lg:-left-[200px] ' alt="" />
                 <img src={img3} className=' rotate-90 absolute w-[15%] lg:w-[20%] top-[90px] lg:top-[200px] right-7 lg:right-[100px] ' alt="" />
             </div>
             <div className="">

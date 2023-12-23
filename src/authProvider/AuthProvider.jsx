@@ -24,10 +24,11 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, { displayName: name, photoURL: photo })
     }
     const logOut = () => {
-        return signOut()
+        return signOut(auth)
     }
     useEffect(() => {
         const Unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser)
             setLoading(false)
             console.log(currentUser, "User Loggin in");
         })

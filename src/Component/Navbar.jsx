@@ -1,10 +1,12 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { SiTask } from "react-icons/si";
 import { useContext } from "react";
 import { AuthContext } from "../authProvider/AuthProvider";
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+    console.log(user);
+    const goTo = useNavigate();
     const location = useLocation();
     const nav_items =
         <>
@@ -32,9 +34,13 @@ const Navbar = () => {
                 isActive
                     ? "ac"
                     : ""
-            } to={'/dashboard'}>Dashboard</NavLink></li>
+            } to={'/dashboard/createTask'}>Dashboard</NavLink></li>
 
         </>
+    const handleOut = () => {
+        logOut()
+        goTo('/')
+    }
     return (
         <div className=" pt-4">
             <div className={`navbar container bg-input_bg mx-auto ${location.pathname == '/' ? ' bg-transparent' : ''} `}>
@@ -49,7 +55,7 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <a className="btn btn-ghost hidden lg:block md:block"><SiTask size={40} color="white" /></a>
+                    <Link className=" hidden text-after_hover hover:scale-150 duration-150 lg:block md:block"><SiTask size={40} color="" /></Link>
                 </div>
                 <div className="navbar-center">
                     <a className="btn btn-ghost block lg:hidden md:hidden"><SiTask size={40} color="white" /></a>
@@ -62,11 +68,11 @@ const Navbar = () => {
                         </ul>
                     </div>
                 </div>
-                <div className={`navbar-end `}>
-                    <div className={` dropdown dropdown-end ${user ? 'block' : 'hidden'}`}>
+                <div className={`navbar-end`}>
+                    <div className={` dropdown dropdown-end ${user ? 'block visible' : 'hidden'}`}>
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                             </div>
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -77,7 +83,7 @@ const Navbar = () => {
                                 </a>
                             </li>
                             <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
+                            <li><button onClick={handleOut}>Logout</button> </li>
                         </ul>
                     </div>
                 </div>

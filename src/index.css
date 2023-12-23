@@ -35,3 +35,10 @@
   width: 100%;
   transition: width 0.4s ease-in-out;
 }
+
+.create {
+  background-image: linear-gradient(to right, #0a1343, #3b57e3);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}

@@ -16,6 +16,7 @@ import Swal from 'sweetalert2'
 import { useContext } from 'react';
 import { AuthContext } from '../authProvider/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
+import axios from 'axios';
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -31,11 +32,11 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { signIn, GoogleSignIn } = useContext(AuthContext);
-    const goTo = useNavigate();
+    const { signIn, signInGoogle } = useContext(AuthContext);
     const onSubmit = async (data) => {
         const userInfo = { email: data?.email }
         signIn(data?.email, data?.password)
+
         try {
             Swal.fire({
                 title: 'Logging in...',
@@ -53,7 +54,7 @@ const Login = () => {
                 title: 'Login successful',
                 text: `${res?.user?.displayName}`,
             });
-            navigate(location.state ? location.state : '/')
+            navigate(location.state ? location.state : '/dashboard')
 
         } catch (error) {
             Swal.close();
@@ -65,27 +66,26 @@ const Login = () => {
         }
     }
 
-    // const handleGoogleSignIn = () => {
-    //     GoogleSignIn()
-    //         .then(res => {
-    //             console.log(res);
-    //             const userInfo = {
-    //                 email: res.user?.email, name: res.user?.displayName, image: res.user?.photoURL, role: 'user', badge: 'bronze',
-    //                 all_badge: ['bronze']
-    //             }
-    //             axiosPublic.post('/user', userInfo)
-    //                 .then(res => {
-    //                     console.log(res.data);
-    //                     Swal.fire({
-    //                         icon: 'success',
-    //                         title: 'Login successful',
+    const handleGoogleSignIn = () => {
+        signInGoogle()
+            .then(res => {
+                console.log(res);
+                const userInfo = {
+                    email: res.user?.email, name: res.user?.displayName, image: res.user?.photoURL
+                }
+                axios.post('http://localhost:3000/user', userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Login successful',
 
-    //                     });
-    //                     navigate('/')
+                        });
+                        navigate('/dashboard')
 
-    //                 })
-    //         })
-    // }
+                    })
+            })
+    }
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" mx='xs' >
@@ -133,8 +133,8 @@ const Login = () => {
                         {errors.password && <span style={{ color: ' red' }} > password is required</span>}
 
                         <div>
-                            {/* onClick={} */}
-                            <button className=' btn bg-white shadow-xl'>
+
+                            <button onClick={handleGoogleSignIn} className=' btn bg-white shadow-xl'>
                                 <FcGoogle size={40} />
                             </button>
                         </div>

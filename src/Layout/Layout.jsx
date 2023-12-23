@@ -5,7 +5,7 @@ const Layout = () => {
     const location = useLocation();
     return (
         <div>
-            <div className=" min-h-screen bg-input_bg">
+            <div className={` ${location.pathname == '/' ? 'bg-input_bg  min-h-screen' : ""}`}>
                 <Navbar></Navbar>
                 {
                     location.pathname == '/' && <Banner></Banner>

@@ -31,7 +31,7 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 const Registration = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { CreateUser, updateUserProfile, logOut } = useContext(AuthContext);
+    const { CreateUser, updateUserProfile, logOut, signInGoogle } = useContext(AuthContext);
     const goTo = useNavigate();
     const onSubmit = async (data) => {
         const imageFile = { image: data.image[0] }
@@ -44,14 +44,16 @@ const Registration = () => {
         console.log(res.data.data, "hi");
         const photo = res.data?.data?.display_url;
         if (res.data?.data?.display_url) {
-            const userInfo = {}
+            const userInfo = { name: data.name, email: data.email, photo: photo }
             console.log(userInfo);
             CreateUser(data?.email, data?.password)
                 .then(res => {
                     console.log(res.user);
                     updateUserProfile(data?.name, photo)
                         .then(async () => {
+                            const res = await axios.post('http://localhost:3000/users', userInfo)
                             if (res.data.insertedId) {
+
                                 Swal.fire({
                                     position: "top-end",
                                     icon: "success",
@@ -68,26 +70,25 @@ const Registration = () => {
                 })
         }
     };
-    // const handleGoogleSignIn = () => {
-    //     GoogleSignIn()
-    //         .then(res => {
-    //             console.log(res);
-    //             const userInfo = {
-    //                 email: res.user?.email, name: res.user?.displayName, image: res.user?.photoURL, role: 'user', badge: 'bronze',
-    //                 all_badge: ['bronze']
-    //             }
-    //             axiosPublic.post('/user', userInfo)
-    //                 .then(res => {
-    //                     console.log(res.data);
-    //                     Swal.fire({
-    //                         icon: 'success',
-    //                         title: 'Login successful',
-    //                         text: `kkk`,
-    //                     });
-    //                     navigate('/')
-    //                 })
-    //         })
-    // }
+    const handleGoogleSignIn = () => {
+        signInGoogle()
+            .then(res => {
+                console.log(res);
+                const userInfo = {
+                    email: res.user?.email, name: res.user?.displayName, image: res.user?.photoURL
+                }
+                axios.post('/user', userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Login successful',
+                            text: `kkk`,
+                        });
+                        goTo('/dashboard')
+                    })
+            })
+    }
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
@@ -101,7 +102,7 @@ const Registration = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <Avatar sx={{ m: 1, bgcolor: 'black' }}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" style={{ fontFamily: 'Syne' }} variant="h2">
@@ -147,11 +148,11 @@ const Registration = () => {
                         <div className="form-control w-full my-6">
                             <input {...register('image', { required: true })} type="file" className="file-input w-full max-w-xs" />
                         </div>
-                        {/* <div>
+                        <div>
                             <button onClick={handleGoogleSignIn} className=' btn bg-white shadow-xl'>
                                 <FcGoogle size={40} />
                             </button>
-                        </div> */}
+                        </div>
 
                         <Grid container>
                             <Grid item>

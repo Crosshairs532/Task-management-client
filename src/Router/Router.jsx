@@ -5,6 +5,8 @@ import Home from "../Pages/Home";
 import Dashboard from "../Pages/Dashboard";
 import Login from "../login_reg/Login";
 import Registration from "../login_reg/Registration";
+import CreateTask from "../Dashboard/CreateTask";
+import PreviousTask from "../Dashboard/PreviousTask";
 // import Login from "../login_reg/Login";
 
 const router = createBrowserRouter([
@@ -16,11 +18,8 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home></Home>
-            },
-            {
-                path: '/dashboard',
-                element: <Dashboard></Dashboard>
             }
+
         ]
     },
     {
@@ -30,6 +29,20 @@ const router = createBrowserRouter([
     {
         path: '/register',
         element: <Registration></Registration>
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: '/dashboard/createTask',
+                element: <CreateTask></CreateTask>
+            },
+            {
+                path: '/dashboard/previousTask',
+                element: <PreviousTask></PreviousTask>
+            }
+        ]
     }
 ]);
 export default router;
