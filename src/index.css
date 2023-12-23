@@ -42,3 +42,8 @@
   -webkit-background-clip: text;
   color: transparent;
 }
+
+.back {
+  filter: blur(100px);
+  /* z-index: ; */
+}

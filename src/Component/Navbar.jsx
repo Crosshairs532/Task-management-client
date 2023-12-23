@@ -55,10 +55,10 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <Link className=" hidden text-after_hover hover:scale-150 duration-150 lg:block md:block"><SiTask size={40} color="" /></Link>
+                    <Link to='/' className=" hidden text-after_hover hover:scale-150 duration-150 lg:block md:block"><SiTask size={40} color="" /></Link>
                 </div>
                 <div className="navbar-center">
-                    <a className="btn btn-ghost block lg:hidden md:hidden"><SiTask size={40} color="white" /></a>
+                    <Link to={'/'} className=" block text-after_hover lg:hidden md:hidden"><SiTask size={40} /></Link>
                     <div className="hidden lg:flex">
                         <ul className="menu font-Syne menu-horizontal px-1">
                             {
@@ -76,13 +76,7 @@ const Navbar = () => {
                             </div>
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                <a className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            <li><a>Settings</a></li>
+
                             <li><button onClick={handleOut}>Logout</button> </li>
                         </ul>
                     </div>

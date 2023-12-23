@@ -1,6 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../Component/Navbar";
 import Banner from "../Component/Banner";
+import Footer from "../Pages/Footer";
+import Who from "../Pages/Who";
 const Layout = () => {
     const location = useLocation();
     return (
@@ -12,6 +14,8 @@ const Layout = () => {
                 }
             </div>
             <Outlet></Outlet>
+
+            <Footer></Footer>
         </div>
     );
 };

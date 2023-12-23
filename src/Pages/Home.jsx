@@ -1,9 +1,11 @@
 // import Banner from "../Component/Banner";
 
+import Who from "./Who";
+
 const Home = () => {
     return (
-        <div className=" min-h-screen bg-body-color">
-            <h1>hello</h1>
+        <div className="  who min-h-screen bg-body-color">
+            <Who></Who>
         </div>
     );
 };
