@@ -43,10 +43,10 @@ const PreviousTask = () => {
 
     console.log(data, to_do, ongoing, completed);
     return (
-        <div className=' flex gap-3 bg-body-color'>
-            <Todo todo={to_do}></Todo>
-            <Ongoing ongoing={ongoing}> </Ongoing>
-            <Completed completed={completed}> </Completed>
+        <div className=' flex gap-3 '>
+            <Todo refetch={refetch} todo={to_do}></Todo>
+            <Ongoing refetch={refetch} ongoing={ongoing}> </Ongoing>
+            <Completed refetch={refetch} completed={completed}> </Completed>
         </div >
     );
 };

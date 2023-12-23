@@ -1,19 +1,25 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import Header from "../Shared/Header";
 import TodoCard from "./TodoCard";
 
 
-const Todo = ({ todo }) => {
+const Todo = ({ todo, refetch }) => {
+
     return (
         <div className="">
-            <Header title={'To-Do'} color={'#5a5e72'} count={todo.length} ></Header>
-            <div>
+            <Header title={'To-Do'} color={'bg-[#3b57e3]'} count={todo.length} ></Header>
+            <div className=" bg-input_bg ">
                 {
-                    todo?.map((item, idx) => (
-                        <TodoCard item={item} key={idx}></TodoCard>
-
-                    ))
+                    todo.length > 0 ? (
+                        todo.map((item, idx) => (
+                            <TodoCard refetch={refetch} item={item} id={item._id} key={idx}></TodoCard>
+                        ))
+                    ) : (
+                        <p className=" font-Syne my-2 text-center text-placeholder">No tasks available.</p>
+                    )
                 }
+
 
             </div>
 

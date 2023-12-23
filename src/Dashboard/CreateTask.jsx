@@ -33,7 +33,7 @@ const CreateTask = () => {
 
     return (
         <>
-            <Toaster></Toaster>
+
             <h1 className=" create font-Syne font-bold text-6xl border-2 mt-[100px]">Create Task:</h1>
             <div className=" font-Syne rounded-lg bg-border-color">
                 <form className=" w-[100%] p-5 space-y-3" onSubmit={handleSubmit(onSubmit)}>

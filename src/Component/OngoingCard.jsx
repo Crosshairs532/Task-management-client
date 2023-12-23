@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
+
+
 import axios from "axios";
 import toast from "react-hot-toast";
 import { CiCircleMinus } from "react-icons/ci";
+import { MdOutlineTipsAndUpdates } from "react-icons/md";
 
-import Modal from "./Modal";
 
-
-const TodoCard = ({ item, id, refetch }) => {
+const OngoingCard = ({ item, id, refetch }) => {
     console.log(item);
     const handleDelete = async () => {
         console.log(id);
@@ -16,8 +16,7 @@ const TodoCard = ({ item, id, refetch }) => {
             const deleting = toast.loading('deleting');
             if (res.data.deletedCount > 0) {
                 toast.success('Deleted!', { id: deleting })
-                refetch();
-
+                refetch()
             }
         }
         catch (error) {
@@ -27,11 +26,11 @@ const TodoCard = ({ item, id, refetch }) => {
     }
     return (
         <div className=" flex font-Syne justify-between hover:scale-110 cursor-pointer duration-100 rounded-md items-center px-4 py-2 lg:w-[200px] my-2 mx-auto bg-border-color">
-            <Modal item={item} ></Modal>
+            <MdOutlineTipsAndUpdates size={20}></MdOutlineTipsAndUpdates>
             <h3>{item?.TaskName}</h3>
             <CiCircleMinus size={20} onClick={() => handleDelete(id)} ></CiCircleMinus>
-        </div >
+        </div>
     );
 };
 
-export default TodoCard;
+export default OngoingCard;
