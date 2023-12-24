@@ -12,7 +12,7 @@ const TodoCard = ({ item, id, refetch }) => {
     const handleDelete = async () => {
         console.log(id);
         try {
-            const res = await axios.delete(`http://localhost:3000/task?id=${id}`)
+            const res = await axios.delete(`https://task-management-server-five-kohl.vercel.app/task?id=${id}`)
             const deleting = toast.loading('deleting');
             if (res.data.deletedCount > 0) {
                 toast.success('Deleted!', { id: deleting })

@@ -73,7 +73,7 @@ const Login = () => {
                 const userInfo = {
                     email: res.user?.email, name: res.user?.displayName, image: res.user?.photoURL
                 }
-                axios.post('http://localhost:3000/users', userInfo)
+                axios.post('https://task-management-server-five-kohl.vercel.app/users', userInfo)
                     .then(res => {
                         console.log(res.data);
                         Swal.fire({

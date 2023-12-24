@@ -9,7 +9,7 @@ const Todo = ({ todo, refetch }) => {
     return (
         <div className=" lg:w-[300px] w-[200px]">
             <Header title={'To-Do'} color={'bg-[#3b57e3]'} count={todo.length} ></Header>
-            <div className=" bg-input_bg ">
+            <div className=" bg-input_bg min-h-[50vh] overflow-y-auto">
                 {
                     todo.length > 0 ? (
                         todo.map((item, idx) => (

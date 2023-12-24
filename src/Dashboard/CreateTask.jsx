@@ -21,7 +21,7 @@ const CreateTask = () => {
         const task = { ...data, userEmail: user?.email, status: 'todo' }
         try {
             const loadingToast = toast.loading('Loading...');
-            const res = await axios.post('http://localhost:3000/task', task)
+            const res = await axios.post('https://task-management-server-five-kohl.vercel.app/task', task)
             if (res?.data?.insertedId) {
                 toast.success('created', { id: loadingToast })
                 reset();

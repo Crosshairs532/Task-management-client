@@ -51,7 +51,7 @@ const Registration = () => {
                     console.log(res.user);
                     updateUserProfile(data?.name, photo)
                         .then(async () => {
-                            const res = await axios.post('http://localhost:3000/users', userInfo)
+                            const res = await axios.post('https://task-management-server-five-kohl.vercel.app/users', userInfo)
                             if (res.data.insertedId) {
 
                                 Swal.fire({

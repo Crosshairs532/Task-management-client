@@ -18,7 +18,7 @@ const PreviousTask = () => {
         queryKey: ['tasks'],
         enabled: !isLoading,
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:3000/task?email=${user?.email}`);
+            const res = await axios.get(`https://task-management-server-five-kohl.vercel.app/task?email=${user?.email}`);
             if (res?.data) {
                 setTodo(res?.data?.filter((task) => task.status == 'todo'))
                 setOngoing(res?.data?.filter((task) => task.status == 'ongoing'))
@@ -32,19 +32,23 @@ const PreviousTask = () => {
     //     console.log('helo');
     // }, [])
     if (!isFetched) {
-        return <div className="flex flex-col gap-4 w-52">
-            <div className="skeleton h-32 w-full"></div>
-            <div className="skeleton h-4 w-28"></div>
-            <div className="skeleton h-4 w-full"></div>
-            <div className="skeleton h-4 w-full"></div>
-        </div>
+        return <>
+            <div className=' flex justify-center items-center h-[100vh]'>
+
+                <div className="flex flex-col gap-4 w-52">
+                    <div className="skeleton h-32 w-full"></div>
+                    <div className="skeleton h-4 w-28"></div>
+                    <div className="skeleton h-4 w-full"></div>
+                    <div className="skeleton h-4 w-full"></div>
+                </div>
+            </div>
+        </>
     }
 
 
     console.log(data, to_do, ongoing, completed);
     return (
         <div className=' flex justify-center items-center mt-[15%] gap-3 flex-wrap lg:flex-row flex-col'>
-
             <Todo refetch={refetch} todo={to_do}></Todo>
             <Ongoing refetch={refetch} ongoing={ongoing}> </Ongoing>
             <Completed refetch={refetch} completed={completed}> </Completed>

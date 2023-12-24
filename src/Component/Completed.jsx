@@ -8,7 +8,7 @@ const Completed = ({ completed, refetch }) => {
     return (
         <div className="lg:w-[300px] w-[200px]">
             <Header title={'Completed'} color={'bg-[#5a5e72]'} count={completed?.length} ></Header>
-            <div className=" bg-input_bg ">
+            <div className=" bg-input_bg min-h-[50vh] overflow-y-auto ">
                 {
                     completed.length > 0 ? (
                         completed.map((item, idx) => (

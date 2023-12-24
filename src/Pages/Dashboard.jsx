@@ -12,7 +12,7 @@ const Dashboard = () => {
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content w-auto min-h-screen bg-placeholder border-2">
+            <div className="drawer-content w-auto min-h-screen border-2">
                 <Outlet></Outlet>
                 <label htmlFor="my-drawer-2" className="btn absolute right-3 top-2 btn-primary drawer-button lg:hidden"><MdOutlineMenuBook size={30}></MdOutlineMenuBook></label>
 

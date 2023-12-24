@@ -14,12 +14,16 @@ const Modal = ({ item, refetch }) => {
         formState: { errors },
     } = useForm()
     const onSubmit = async (data) => {
-        const updating = toast.loading('updating')
-        const res = await axios.patch(`http://localhost:3000/task?id=${item._id}`, data)
-        if (res.data?.modifiedCount > 0) {
-
-            toast.success('Updated', { id: updating })
-            refetch();
+        try {
+            const updating = toast.loading('updating');
+            const res = await axios.patch(`https://task-management-server-five-kohl.vercel.app/task?id=${item._id}`, data)
+            if (res.data?.modifiedCount > 0) {
+                toast.success('Updated', { id: updating })
+                refetch();
+            }
+        }
+        catch (error) {
+            console.log(error);
         }
     }
     return (

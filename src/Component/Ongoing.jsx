@@ -7,7 +7,7 @@ const Ongoing = ({ ongoing, refetch }) => {
     return (
         <div className=" lg:w-[300px] w-[200px]">
             <Header title={'On-Going'} color={'bg-[#0a1343]'} count={ongoing.length} ></Header>
-            <div className=" bg-input_bg ">
+            <div className=" bg-input_bg min-h-[50vh] overflow-y-auto">
                 {
                     ongoing.length > 0 ? (
                         ongoing.map((item, idx) => (
