@@ -2,6 +2,7 @@
 
 
 import axios from "axios";
+import { useDrag, useDrop } from "react-dnd";
 import toast from "react-hot-toast";
 import { CiCircleMinus } from "react-icons/ci";
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
@@ -9,6 +10,13 @@ import { MdOutlineTipsAndUpdates } from "react-icons/md";
 
 const OngoingCard = ({ item, id, refetch }) => {
     console.log(item);
+    const [{ isDragging }, Drag] = useDrag(() => ({
+        type: 'task',
+        item: { id: item._id },
+        collect: (monitor) => ({
+            isDragging: !!monitor.isDragging()
+        })
+    }))
     const handleDelete = async () => {
         console.log(id);
         try {
@@ -25,7 +33,7 @@ const OngoingCard = ({ item, id, refetch }) => {
 
     }
     return (
-        <div className=" flex font-Syne justify-between hover:scale-110 cursor-pointer duration-100 rounded-md items-center px-4 py-2 lg:w-[200px] my-2 mx-auto bg-border-color">
+        <div ref={Drag} className={`flex ${isDragging ? " opacity-40" : ' opacity-100'} font-Syne justify-between hover:scale-110 cursor-pointer duration-100 rounded-md items-center px-4 py-2 lg:w-[200px] my-2 mx-auto bg-border-color`}>
             <MdOutlineTipsAndUpdates size={20}></MdOutlineTipsAndUpdates>
             <h3>{item?.TaskName}</h3>
             <CiCircleMinus size={20} onClick={() => handleDelete(id)} ></CiCircleMinus>

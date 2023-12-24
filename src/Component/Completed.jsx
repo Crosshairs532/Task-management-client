@@ -3,7 +3,6 @@
 import { useDrop } from "react-dnd";
 import Header from "../Shared/Header";
 import CompletedCard from "./CompletedCard";
-import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -20,6 +19,7 @@ const Completed = ({ completed, refetch }) => {
         })
     }))
     const addItem = async ({ id }) => {
+        console.log(id);
         const res = await axios.patch(`https://task-management-server-five-kohl.vercel.app/task/status?id=${id}`, { status: 'completed' })
         if (res.data.modifiedCount > 0) {
             refetch()
@@ -30,7 +30,7 @@ const Completed = ({ completed, refetch }) => {
 
         <div ref={drop} className={`lg:w-[300px] w-[200px] `}>
             <Header title={'Completed'} color={'bg-[#5a5e72]'} count={completed?.length} ></Header>
-            <div className={` ${isOver ? " bg-[#83869351]" : ""} bg-input_bg min-h-[50vh] overflow-y-auto `}>
+            <div className={` ${isOver ? " bg-[#83869351]" : " bg-input_bg"} min-h-[50vh] overflow-y-auto `}>
                 {
                     completed.length > 0 ? (
                         completed.map((item, idx) => (
