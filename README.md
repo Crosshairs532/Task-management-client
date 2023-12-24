@@ -1,8 +1,14 @@
-# React + Vite
+# [TaskSwift] ([GitHub Pages](https://pages.github.com/))
+### click on here 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+This is a simple task management website. user can add task to this  delete and update it according to their preference.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+* One main feature i have focus on this was drag and drop feature. from each  of the tables ongoing, completed, todo . 
+* they will also get updated as they drop it according to their status.
+
+
+
+
+
