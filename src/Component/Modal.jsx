@@ -13,6 +13,7 @@ const Modal = ({ item, refetch }) => {
         handleSubmit,
         formState: { errors },
     } = useForm()
+    console.log(item, item.TaskName);
     const onSubmit = async (data) => {
         try {
             const updating = toast.loading('updating');

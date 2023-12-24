@@ -18,18 +18,14 @@ const Navbar = () => {
                     ? " ac"
 
                     : ""
-            } to={'/product'}>Product</NavLink></li>
+            } to={'/about'}>about</NavLink></li>
             <li><NavLink className={({ isActive }) =>
                 isActive
                     ? "ac"
 
                     : ""
-            } to={'/in'}>Industries</NavLink></li>
-            <li><NavLink className={({ isActive }) =>
-                isActive
-                    ? "ac"
-                    : ""
-            } to={'/ind'}>Industries</NavLink></li>
+            } to={'/feature'}>Features</NavLink></li>
+
             <li><NavLink className={({ isActive }) =>
                 isActive
                     ? "ac"
@@ -42,8 +38,8 @@ const Navbar = () => {
         goTo('/')
     }
     return (
-        <div className=" pt-4">
-            <div className={`navbar container bg-input_bg mx-auto ${location.pathname == '/' ? ' bg-transparent' : ''} `}>
+        <div className=" bg-input_bg">
+            <div className={`navbar container py-4 bg-input_bg mx-auto ${location.pathname == '/' ? ' bg-transparent' : ''} `}>
                 <div className="navbar-start ">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

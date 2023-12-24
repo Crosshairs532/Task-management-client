@@ -9,6 +9,9 @@ import { useEffect, useState } from 'react';
 import Todo from '../Component/Todo'
 import Ongoing from '../Component/Ongoing';
 import Completed from '../Component/Completed';
+// import { DragDropContext } from 'react-beautiful-dnd';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 const PreviousTask = () => {
     const [to_do, setTodo] = useState([]);
     const [ongoing, setOngoing] = useState([]);
@@ -48,12 +51,15 @@ const PreviousTask = () => {
 
     console.log(data, to_do, ongoing, completed);
     return (
-        <div className=' flex justify-center items-center mt-[15%] gap-3 flex-wrap lg:flex-row flex-col'>
-            <Todo refetch={refetch} todo={to_do}></Todo>
-            <Ongoing refetch={refetch} ongoing={ongoing}> </Ongoing>
-            <Completed refetch={refetch} completed={completed}> </Completed>
+        <DndProvider backend={HTML5Backend}>
+            <div className=' flex justify-center items-center mt-[15%] gap-3 flex-wrap lg:flex-row flex-col'>
+                <Todo refetch={refetch} todo={to_do}></Todo>
+                <Ongoing refetch={refetch} ongoing={ongoing}> </Ongoing>
+                <Completed refetch={refetch} completed={completed}> </Completed>
+            </div >
+        </DndProvider>
 
-        </div >
+
     );
 };
 

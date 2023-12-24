@@ -45,5 +45,14 @@
 
 .back {
   filter: blur(100px);
-  /* z-index: ; */
+  /*
+   z-index: ; */
+}
+
+.bg {
+  background-image: url('../src/assets/sssplatter.svg');
+  background-position: right;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: .6;
 }

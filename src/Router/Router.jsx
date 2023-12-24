@@ -7,6 +7,8 @@ import Login from "../login_reg/Login";
 import Registration from "../login_reg/Registration";
 import CreateTask from "../Dashboard/CreateTask";
 import PreviousTask from "../Dashboard/PreviousTask";
+import About from "../Pages/About";
+import Feature from "../Pages/Feature";
 // import Login from "../login_reg/Login";
 
 const router = createBrowserRouter([
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home></Home>
+            },
+            {
+                path: '/about',
+                element: <About></About>
+            },
+            {
+                path: '/feature',
+                element: <Feature></Feature>
             }
 
         ]
