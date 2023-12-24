@@ -55,10 +55,10 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                    <Link to='/' className=" hidden text-after_hover hover:scale-150 duration-150 lg:block md:block"><SiTask size={40} color="" /></Link>
+                    <Link to='/' className=" hidden text-after_hover hover:scale-150 duration-150 lg:block"><SiTask size={40} color="" /></Link>
                 </div>
                 <div className="navbar-center">
-                    <Link to={'/'} className=" block text-after_hover lg:hidden md:hidden"><SiTask size={40} /></Link>
+                    <Link to={'/'} className=" block text-after_hover lg:hidden "><SiTask size={40} /></Link>
                     <div className="hidden lg:flex">
                         <ul className="menu font-Syne menu-horizontal px-1">
                             {

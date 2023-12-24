@@ -54,7 +54,7 @@ const Login = () => {
                 title: 'Login successful',
                 text: `${res?.user?.displayName}`,
             });
-            navigate(location.state ? location.state : '/dashboard')
+            navigate(location.state ? location.state : '/dashboard/createTask')
 
         } catch (error) {
             Swal.close();
@@ -73,7 +73,7 @@ const Login = () => {
                 const userInfo = {
                     email: res.user?.email, name: res.user?.displayName, image: res.user?.photoURL
                 }
-                axios.post('http://localhost:3000/user', userInfo)
+                axios.post('http://localhost:3000/users', userInfo)
                     .then(res => {
                         console.log(res.data);
                         Swal.fire({
@@ -81,7 +81,7 @@ const Login = () => {
                             title: 'Login successful',
 
                         });
-                        navigate('/dashboard')
+                        navigate('/dashboard/createTask')
 
                     })
             })

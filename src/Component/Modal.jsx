@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
 import axios from "axios";
 import toast from "react-hot-toast";
-const Modal = ({ item }) => {
+const Modal = ({ item, refetch }) => {
     const {
         register,
         handleSubmit,
@@ -19,6 +19,7 @@ const Modal = ({ item }) => {
         if (res.data?.modifiedCount > 0) {
 
             toast.success('Updated', { id: updating })
+            refetch();
         }
     }
     return (

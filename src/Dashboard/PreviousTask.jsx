@@ -43,10 +43,12 @@ const PreviousTask = () => {
 
     console.log(data, to_do, ongoing, completed);
     return (
-        <div className=' flex gap-3 '>
+        <div className=' flex justify-center items-center mt-[15%] gap-3 flex-wrap lg:flex-row flex-col'>
+
             <Todo refetch={refetch} todo={to_do}></Todo>
             <Ongoing refetch={refetch} ongoing={ongoing}> </Ongoing>
             <Completed refetch={refetch} completed={completed}> </Completed>
+
         </div >
     );
 };

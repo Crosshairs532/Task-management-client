@@ -6,7 +6,7 @@ import CompletedCard from "./CompletedCard";
 const Completed = ({ completed, refetch }) => {
     // #f0f2ff
     return (
-        <div>
+        <div className="lg:w-[300px] w-[200px]">
             <Header title={'Completed'} color={'bg-[#5a5e72]'} count={completed?.length} ></Header>
             <div className=" bg-input_bg ">
                 {

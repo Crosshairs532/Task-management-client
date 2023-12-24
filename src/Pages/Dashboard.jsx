@@ -1,25 +1,25 @@
+/* eslint-disable no-unused-vars */
 import { FaHome } from "react-icons/fa";
 import { BiTask } from "react-icons/bi";
 import { FaTasks } from "react-icons/fa";
-
+import { MdOutlineMenuBook } from "react-icons/md";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import UseContextapi from "../Hooks/UseContextapi";
 
 const Dashboard = () => {
     const { user, isLoading } = UseContextapi()
-
+    // relative flex flex-col items-center justify-center
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content relative flex flex-col items-center justify-center">
+            <div className="drawer-content w-auto min-h-screen bg-placeholder border-2">
                 <Outlet></Outlet>
-                <label htmlFor="my-drawer-2" className="btn absolute right-3 top-2 btn-primary drawer-button lg:hidden">Open drawer</label>
+                <label htmlFor="my-drawer-2" className="btn absolute right-3 top-2 btn-primary drawer-button lg:hidden"><MdOutlineMenuBook size={30}></MdOutlineMenuBook></label>
 
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side min-h-screen">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu flex flex-col justify-around  p-4 w-80 min-h-full bg-text_color font-Syne text-border-color">
-                    {/* Sidebar content here */}
 
                     <div className=" mx-auto mb-7">
                         <div className="avatar online">

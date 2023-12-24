@@ -5,7 +5,7 @@ import OngoingCard from "./OngoingCard";
 
 const Ongoing = ({ ongoing, refetch }) => {
     return (
-        <div>
+        <div className=" lg:w-[300px] w-[200px]">
             <Header title={'On-Going'} color={'bg-[#0a1343]'} count={ongoing.length} ></Header>
             <div className=" bg-input_bg ">
                 {

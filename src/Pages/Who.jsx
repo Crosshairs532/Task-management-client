@@ -1,11 +1,20 @@
+/* eslint-disable react/no-unescaped-entities */
+import Aos from "aos";
+import { useEffect } from "react";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { PiStudentFill } from "react-icons/pi";
 import { SiXdadevelopers } from "react-icons/si";
 
 
 const Who = () => {
+    useEffect(() => {
+        Aos.init({
+            duration: 1500,
+        })
+        Aos.refresh();
+    }, [])
     return (
-        <div className="relative container z-20 mx-auto">
+        <div data-aos='fade-up' className="relative container z-20 mx-auto">
             {/* <div className=" absolute  top-0 -z-20 w-[200px] h-[200px] bg-after_hover back"></div> */}
             <div className=" z-10">
                 <h1 className=" font-Syne text-center font-bold pt-[100px] text-5xl">Who will be benefitted?</h1>
