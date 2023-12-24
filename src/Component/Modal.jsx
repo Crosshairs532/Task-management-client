@@ -19,6 +19,7 @@ const Modal = ({ item, refetch }) => {
             const res = await axios.patch(`https://task-management-server-five-kohl.vercel.app/task?id=${item._id}`, data)
             if (res.data?.modifiedCount > 0) {
                 toast.success('Updated', { id: updating })
+
                 refetch();
             }
         }

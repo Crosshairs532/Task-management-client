@@ -24,6 +24,7 @@ const CreateTask = () => {
             const res = await axios.post('https://task-management-server-five-kohl.vercel.app/task', task)
             if (res?.data?.insertedId) {
                 toast.success('created', { id: loadingToast })
+                // toast.dismiss(loadingToast);
                 reset();
             }
         }

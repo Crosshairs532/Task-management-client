@@ -16,6 +16,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../authProvider/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
 import axios from 'axios'
+import toast from 'react-hot-toast';
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 function Copyright(props) {
@@ -34,6 +35,7 @@ const Registration = () => {
     const { CreateUser, updateUserProfile, logOut, signInGoogle } = useContext(AuthContext);
     const goTo = useNavigate();
     const onSubmit = async (data) => {
+        const createuser = toast.loading('Registration completing....')
         const imageFile = { image: data.image[0] }
         console.log(imageFile);
         const res = await axios.post(image_hosting_api, imageFile, {
@@ -54,13 +56,14 @@ const Registration = () => {
                             const res = await axios.post('https://task-management-server-five-kohl.vercel.app/users', userInfo)
                             if (res.data.insertedId) {
 
-                                Swal.fire({
-                                    position: "top-end",
-                                    icon: "success",
-                                    title: "Registered Successfully",
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
+                                // Swal.fire({
+                                //     position: "top-end",
+                                //     icon: "success",
+                                //     title: "Registered Successfully",
+                                //     showConfirmButton: false,
+                                //     timer: 1500
+                                // });
+                                toast.success('User Registered Successfully', { id: createuser })
                                 logOut()
                                     .then(res => {
                                         goTo('/login')
